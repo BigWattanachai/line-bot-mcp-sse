@@ -116,7 +116,7 @@ server.tool(
   },
   async ({ userId, message }) => {
     if (!userId) {
-      return createErrorResponse(NO_USER_ID_ERROR);
+      userId = destinationId;
     }
 
     try {
@@ -141,7 +141,7 @@ server.tool(
   },
   async ({ userId, message }) => {
     if (!userId) {
-      return createErrorResponse(NO_USER_ID_ERROR);
+      userId = destinationId;
     }
 
     try {
@@ -209,8 +209,6 @@ server.tool(
     message: textMessageSchema,
   },
   async ({ replyToken, message }) => {
-    console.log("message: " + JSON.stringify(message));
-    console.log("replyToken: " + JSON.stringify(replyToken));
     try {
       const response = await messagingApiClient.replyMessage({
         replyToken: replyToken,
@@ -218,7 +216,6 @@ server.tool(
       });
       return createSuccessResponse(response);
     } catch (error) {
-      console.log("Error:", error);
       return createErrorResponse(
         `Failed to reply with message: ${error.message}`,
       );
