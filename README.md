@@ -55,7 +55,7 @@
 
 ## Installation
 
-### Step 1: Install line-bot-mcp-server
+### Step 1: Install line-bot-mcp-sse
 
 requirements:
 - Node.js v20 or later
@@ -63,13 +63,13 @@ requirements:
 Clone this repository:
 
 ```
-git clone git@github.com:line/line-bot-mcp-server.git
+git clone https://github.com/BigWattanachai/line-bot-mcp-sse.git
 ```
 
-Install the necessary dependencies and build line-bot-mcp-server when using Node.js. This step is not required when using Docker:
+Install the necessary dependencies and build line-bot-mcp-sse when using Node.js. This step is not required when using Docker:
 
 ```
-cd line-bot-mcp-server && npm install && npm run build
+cd line-bot-mcp-sse && npm install && npm run build
 ```
 
 ### Step 2: Create LINE Official Account
@@ -83,7 +83,7 @@ If you have a LINE Official Account, enable the Messaging API for your LINE Offi
 Please add the following configuration for an AI Agent like Claude Desktop or Cline.
 
 Set the environment variables or arguments as follows:
-- `mcpServers.args`: (required) The path to `line-bot-mcp-server`.
+- `mcpServers.args`: (required) The path to `line-bot-mcp-sse`.
 - `CHANNEL_ACCESS_TOKEN`: (required) Channel Access Token. You can confirm this by following [this instructions](https://developers.line.biz/en/docs/basics/channel-access-token/#long-lived-channel-access-token).
 - `DESTINATION_USER_ID`: (optional) The default user ID of the recipient. You can confirm this by following [this instructions](https://developers.line.biz/en/docs/messaging-api/getting-user-ids/#get-own-user-id).
 
@@ -95,7 +95,7 @@ Set the environment variables or arguments as follows:
     "line-bot": {
       "command": "node",
       "args": [
-        "PATH/TO/line-bot-mcp-server/dist/index.js"
+        "PATH/TO/line-bot-mcp-sse/dist/index.js"
       ],
       "env": {
         "CHANNEL_ACCESS_TOKEN" : "FILL_HERE",
@@ -110,7 +110,7 @@ Set the environment variables or arguments as follows:
 
 Build the Docker image first:
 ```
-docker build -t line/line-bot-mcp-server .
+docker build -t line/line-bot-mcp-sse .
 ```
 
 ```json
@@ -126,7 +126,7 @@ docker build -t line/line-bot-mcp-server .
         "CHANNEL_ACCESS_TOKEN",
         "-e",
         "DESTINATION_USER_ID",
-        "line/line-bot-mcp-server"
+        "line/line-bot-mcp-sse"
       ],
       "env": {
         "CHANNEL_ACCESS_TOKEN" : "FILL_HERE",
@@ -164,11 +164,11 @@ You can also use Docker to deploy the server:
 docker-compose up -d
 
 # Or using Docker directly with the simple Dockerfile
-docker build -t line-bot-mcp-server -f Dockerfile .
+docker build -t line-bot-mcp-sse -f Dockerfile .
 docker run -p 8000:8000 \
   -e CHANNEL_ACCESS_TOKEN="your_channel_access_token" \
   -e DESTINATION_USER_ID="your_user_id" \
-  line-bot-mcp-server
+  line-bot-mcp-sse
 ```
 
 ---
