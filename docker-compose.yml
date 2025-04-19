@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  line-bot-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - CHANNEL_ACCESS_TOKEN=${CHANNEL_ACCESS_TOKEN}
+      - DESTINATION_USER_ID=${DESTINATION_USER_ID}
+    restart: unless-stopped

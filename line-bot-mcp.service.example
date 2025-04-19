@@ -1,0 +1,15 @@
+[Unit]
+Description=LINE Bot MCP Server
+After=network.target
+
+[Service]
+Type=simple
+User=YOUR_USERNAME
+WorkingDirectory=/path/to/line-bot-mcp-server
+ExecStart=/usr/bin/supergateway --stdio "node /path/to/line-bot-mcp-server/dist/index.js" --port 8000 --outputTransport sse
+Environment="CHANNEL_ACCESS_TOKEN=your_channel_access_token"
+Environment="DESTINATION_USER_ID=your_user_id"
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
